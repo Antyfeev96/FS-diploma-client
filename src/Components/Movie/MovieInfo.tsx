@@ -1,5 +1,5 @@
 import React from 'react';
-import poster1 from "Assets/Images/poster1.jpg";
+import nevskii from 'Assets/Images/nevskii.png'
 
 interface IMovieInfo {
     name: string
@@ -11,7 +11,7 @@ function MovieInfo({ name, description, duration } : IMovieInfo) {
     return (
         <div className="movie__info">
             <div className="movie__poster">
-                <img className="movie__poster-image" alt="Звёздные войны постер" src={poster1}/>
+                <img className="movie__poster-image" alt="Звёздные войны постер" src={nevskii}/>
             </div>
             <div className="movie__description">
                 <h2 className="movie__title">{name}</h2>

@@ -1,6 +1,5 @@
-import React, {useRef, MouseEvent} from 'react';
+import React, { useRef } from 'react';
 import { handleNavDateClassName } from "functions";
-import {filmsApi} from "Store/filmsApi";
 
 export type Modifier = 'today' | 'chosen' | 'weekend' | null
 
@@ -58,7 +57,7 @@ function Navbar() {
     return (
         <nav onClick={onClick} ref={ref} className="page-nav">
             {navigationData.map(data =>
-                <div className={`page-nav__day ${handleNavDateClassName(data.modifier)}`}>
+                <div key={data.date} className={`page-nav__day ${handleNavDateClassName(data.modifier)}`}>
                     <span className="page-nav__day-week">{data.weekday}</span>
                     <span className="page-nav__day-number">{data.date}</span>
                 </div>
