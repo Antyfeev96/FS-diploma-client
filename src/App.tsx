@@ -1,6 +1,8 @@
 import React from 'react';
-import poster1 from './Assets/Images/poster1.jpg'
-import poster2 from './Assets/Images/poster2.jpg'
+import Navbar from 'Components/Navbar/Navbar'
+
+import poster1 from 'Assets/Images/poster1.jpg'
+import poster2 from 'Assets/Images/poster2.jpg'
 
 function App() {
     return (
@@ -10,28 +12,7 @@ function App() {
                     Идём<span>в</span>кино
                 </h1>
             </header>
-            <nav className="page-nav">
-                <a className="page-nav__day page-nav__day_today" href="#">
-                    <span className="page-nav__day-week">Пн</span><span className="page-nav__day-number">31</span>
-                </a>
-                <a className="page-nav__day" href="#">
-                    <span className="page-nav__day-week">Вт</span><span className="page-nav__day-number">1</span>
-                </a>
-                <a className="page-nav__day page-nav__day_chosen" href="#">
-                    <span className="page-nav__day-week">Ср</span><span className="page-nav__day-number">2</span>
-                </a>
-                <a className="page-nav__day" href="#">
-                    <span className="page-nav__day-week">Чт</span><span className="page-nav__day-number">3</span>
-                </a>
-                <a className="page-nav__day" href="#">
-                    <span className="page-nav__day-week">Пт</span><span className="page-nav__day-number">4</span>
-                </a>
-                <a className="page-nav__day page-nav__day_weekend" href="#">
-                    <span className="page-nav__day-week">Сб</span><span className="page-nav__day-number">5</span>
-                </a>
-                <a className="page-nav__day page-nav__day_next" href="#">
-                </a>
-            </nav>
+            <Navbar/>
             <main>
                 <section className="movie">
                     <div className="movie__info">
@@ -45,6 +26,7 @@ function App() {
                                 нехристей-ляхов во главе с могущественным колдуном.</p>
                             <p className="movie__data">
                                 <span className="movie__data-duration">130 минут</span>
+                                &nbsp;
                                 <span className="movie__data-origin">США</span>
                             </p>
                         </div>
@@ -103,6 +85,7 @@ function App() {
                                 котором смерть подстерегала человека на каждом шагу.</p>
                             <p className="movie__data">
                                 <span className="movie__data-duration">96 минут</span>
+                                &nbsp;
                                 <span className="movie__data-origin">Франция</span>
                             </p>
                         </div>
@@ -162,6 +145,7 @@ function App() {
                                 беспощаднее.</p>
                             <p className="movie__data">
                                 <span className="movie__data-duration">101 минута</span>
+                                &nbsp;
                                 <span className="movie__data-origin">Канада, США</span>
                             </p>
                         </div>
