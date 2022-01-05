@@ -15,8 +15,15 @@ export const handleNavDateClassName = (day: Modifier) => {
     }
 }
 
-export const handleChangeClassName = () => {
+//--------------------BUYING-SCHEME--------------------------//
 
+export const handleHallPlaceClassName = (type: string) => {
+    switch (type) {
+        default:
+            return type
+        case 'disabled':
+            return 'taken'
+    }
 }
 
-//--------------------------------------------//
+

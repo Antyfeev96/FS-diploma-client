@@ -4,7 +4,7 @@ type IState = {
     hall: any
     filmId: string
     session: string
-    places: Array<Array<string>>
+    places: Array<any>
 }
 
 const initialState = {
@@ -26,10 +26,18 @@ const HallSlice = createSlice({
         },
         setSessionTime: (state, action) => {
             state.session = action.payload;
-        }
+        },
+        addSelectedPlace: (state, action) => {
+            state.places.push(action.payload)
+        },
+        deleteSelectedPlace: (state, action) => {
+            const { row, place } = action.payload
+            state.places = state.places.filter(statePlace => statePlace.row !== row || statePlace.place !== place)
+        },
+        resetState: () => initialState
     }
 })
 
-export const { setActiveHall, setFilmId, setSessionTime } = HallSlice.actions
+export const { setActiveHall, setFilmId, setSessionTime, addSelectedPlace, deleteSelectedPlace, resetState } = HallSlice.actions
 
 export default HallSlice.reducer

@@ -317,6 +317,14 @@ body {
     border: 1px solid #525252;
     box-sizing: border-box;
     border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #33e5f1;
+        box-shadow: 0 0 4px #2dcfd7;
+        transform: scale(1.2);
+    }
 
     &:not(:first-of-type) {
         margin-left: 4px;
@@ -333,6 +341,13 @@ body {
 
 .buying-scheme__chair_taken {
     background-color: transparent;
+
+    &:hover {
+        cursor: not-allowed;
+        background-color: inherit;
+        box-shadow: inherit;
+        transform: none;
+    }
 }
 
 .buying-scheme__chair_vip {
