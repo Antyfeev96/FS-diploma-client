@@ -13,6 +13,11 @@ export const hallsApi = createApi({
             query: (id: string) => ({
                 url: `halls/${id}`
             })
+        }),
+        getHallRows: build.query({
+            query: (id: string) => ({
+                url: `halls/${id}/rows`
+            })
         })
     })
 })

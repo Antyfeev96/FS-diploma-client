@@ -1,13 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+import { useAppDispatch } from "Hooks/redux";
 import {hallsApi} from "Store/hallsApi";
+import { setActiveHall, setFilmId, setSessionTime } from 'Store/HallSlice'
 
 interface IHallId {
-    id: string,
+    hallId: string,
     sessions: any
+    filmId: string
 }
 
-function MovieHall({id, sessions}: IHallId) {
-    const {data, isLoading, isError, error, isSuccess} = hallsApi.useGetHallByIdQuery(id)
+function MovieHall({hallId, sessions, filmId}: IHallId) {
+    const dispatch = useAppDispatch()
+    const {data, isLoading, isError, error, isSuccess} = hallsApi.useGetHallByIdQuery(hallId)
+
+    const onClick = (session: string) => {
+        dispatch(setActiveHall(data.hall))
+        dispatch(setFilmId(filmId))
+        dispatch(setSessionTime(session))
+    }
 
     return (
         <div className="movie-seances__hall">
@@ -19,7 +30,7 @@ function MovieHall({id, sessions}: IHallId) {
                 <ul className="movie-seances__list">
                     {sessions.map((session: string) =>
                         <li key={session} className="movie-seances__time-block">
-                            <a className="movie-seances__time">{session}</a>
+                            <Link onClick={() => onClick(session)} to="/hall" className="movie-seances__time">{session}</Link>
                         </li>
                     )}
                 </ul>

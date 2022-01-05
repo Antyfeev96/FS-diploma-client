@@ -19,7 +19,7 @@ function Main() {
             {isLoading && <h1>Loading films...</h1>}
             {isError && <h1>Произошла ошибка {errorMessage}</h1>}
             {isSuccess && !isError && films.map((film: any) =>
-                <Movie film={film}/>
+                <Movie key={film._id} film={film}/>
             )}
         </main>
     );
