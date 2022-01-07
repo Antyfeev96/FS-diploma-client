@@ -13,7 +13,6 @@ function Main() {
         }
     }, [error])
 
-
     return (
         <main>
             {isLoading && <h1>Loading films...</h1>}

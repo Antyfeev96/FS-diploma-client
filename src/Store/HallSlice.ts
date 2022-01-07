@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type IState = {
+type Place = {
+    row: number
+    place: number
+    status: string
+}
+
+type State = {
     hall: any
     filmId: string
     session: string
-    places: Array<any>
+    places: Place[]
 }
 
 const initialState = {
@@ -12,7 +18,7 @@ const initialState = {
     filmId: '',
     session: '',
     places: [],
-} as IState
+} as State
 
 const HallSlice = createSlice({
     name: 'hall',

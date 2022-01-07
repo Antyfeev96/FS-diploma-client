@@ -8,22 +8,16 @@ function BuyingScheme() {
     const { hall, places } = useAppSelector(state => state.hallState)
     const { rows, prices } = hall
 
-    const onSelect = (e: any, { row, place }: { row: number, place: number }) => {
+    const onSelect = (e: any, { row, place, status }: { row: number, place: number, status: string }) => {
         if (e.target.classList.contains('buying-scheme__chair_taken')) return;
         if (places.find(obj => obj.row === row && obj.place === place)) {
-            dispatch(deleteSelectedPlace({ row, place }))
+            dispatch(deleteSelectedPlace({ row, place, status }))
         } else {
-            dispatch(addSelectedPlace({ row, place }))
+            dispatch(addSelectedPlace({ row, place, status }))
         }
         console.log(places)
         e.target.classList.toggle('buying-scheme__chair_selected')
     }
-
-    useEffect(() => {
-        return () => {
-            dispatch(resetState())
-        }
-    }, [])
 
     return (
         <div className="buying-scheme">
@@ -32,7 +26,7 @@ function BuyingScheme() {
                     <div key={rowIndex} className="buying-scheme__row">
                         {row.map((place, index: number) =>
                             <span
-                                onClick={(e) => onSelect(e, { row: rowIndex, place: index })}
+                                onClick={(e) => onSelect(e, { row: rowIndex, place: index, status: place })}
                                 key={index}
                                 className={`buying-scheme__chair buying-scheme__chair_${handleHallPlaceClassName(place)}`}
                             />
