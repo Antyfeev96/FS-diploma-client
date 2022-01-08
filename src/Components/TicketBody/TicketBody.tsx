@@ -5,7 +5,7 @@ import {filmsApi} from "../../Store/filmsApi";
 interface ITicketBody {
     price?: ReactNode
     QR?: ReactNode
-    paymentButton: ReactNode
+    paymentButton?: ReactNode
     footerText: string
 }
 
@@ -22,7 +22,10 @@ function TicketBody({price, QR, paymentButton, footerText}: ITicketBody) {
             <p className="ticket__info">Места:
                 <span className="ticket__details ticket__chairs">
                     {places.map(({row, place}) =>
-                        <div>Ряд {row + 1}, место {place + 1}</div>
+                        <>
+                            <br/>
+                            <span>Ряд {row + 1}, место {place + 1}</span>
+                        </>
                     )}
                 </span>
             </p>

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Loader from 'Components/Loader/Loader'
 import Movie from "../Movie/Movie";
 import {filmsApi} from "Store/filmsApi";
 
@@ -15,7 +16,7 @@ function Main() {
 
     return (
         <main>
-            {isLoading && <h1>Loading films...</h1>}
+            {isLoading && <Loader />}
             {isError && <h1>Произошла ошибка {errorMessage}</h1>}
             {isSuccess && !isError && films.map((film: any) =>
                 <Movie key={film._id} film={film}/>

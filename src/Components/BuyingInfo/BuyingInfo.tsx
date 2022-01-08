@@ -18,7 +18,7 @@ function BuyingInfo() {
         <div className="buying__info">
             <div className="buying__info-description">
                 <h2 className="buying__info-title">
-                    {isFilmLoading && 'Загружаем фильм'}
+                    {isFilmLoading && 'Загружаем фильм...'}
                     {isFilmSuccess && dataFilm.film.name}
                 </h2>
                 <p className="buying__info-start">Начало сеанса: {session}</p>

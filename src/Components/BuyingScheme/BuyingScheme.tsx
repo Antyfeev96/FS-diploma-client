@@ -7,6 +7,7 @@ function BuyingScheme() {
     const dispatch = useAppDispatch()
     const { hall, places } = useAppSelector(state => state.hallState)
     const { rows, prices } = hall
+    console.log({prices})
 
     const onSelect = (e: any, { row, place, status }: { row: number, place: number, status: string }) => {
         if (e.target.classList.contains('buying-scheme__chair_taken')) return;

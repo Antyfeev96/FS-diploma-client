@@ -2,12 +2,14 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { sessionsApi } from './sessionsApi'
 import { filmsApi } from "./filmsApi";
 import {hallsApi} from "./hallsApi";
+import {ticketsApi} from "./ticketsApi";
 import HallSliceReducer from './HallSlice'
 
 const rootReducer = combineReducers({
     [sessionsApi.reducerPath]: sessionsApi.reducer,
     [filmsApi.reducerPath]: filmsApi.reducer,
     [hallsApi.reducerPath]: hallsApi.reducer,
+    [ticketsApi.reducerPath]: ticketsApi.reducer,
     hallState: HallSliceReducer
 })
 
@@ -19,6 +21,7 @@ export const setupStore = () => {
                 .concat(sessionsApi.middleware)
                 .concat(filmsApi.middleware)
                 .concat(hallsApi.middleware)
+                .concat(ticketsApi.middleware)
     })
 }
 

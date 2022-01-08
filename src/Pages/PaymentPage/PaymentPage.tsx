@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "Hooks/redux";
-import {filmsApi} from "Store/filmsApi";
+import {ticketsApi} from "Store/ticketsApi";
 import TicketHeader from "Components/TicketHeader/TicketHeader";
 import TicketBody from "Components/TicketBody/TicketBody";
 
@@ -22,20 +23,39 @@ const Price = () => {
     )
 }
 
-const PaymentButton = () => (
-    <button className="accepting-button">Получить код
-        бронирования
-    </button>
-)
+const PaymentButton = ({ onClick }: { onClick: any }) => {
+    return (
+        <button onClick={onClick} className="accepting-button">
+            Получить код бронирования
+        </button>
+    );
+}
 
 function PaymentPage() {
+    const navigate = useNavigate()
+    const [createTicket, { data, isLoading, isError, isSuccess }] = ticketsApi.useCreateTicketMutation({
+        fixedCacheKey: 'create-ticket',
+    })
+    const {places, hall, session, filmId} = useAppSelector(state => state.hallState)
+
+    const onClick = async () => {
+        navigate('/ticket')
+        const ticket = {
+            hallId: hall._id,
+            session,
+            filmId,
+            seats: places
+        }
+        await createTicket(ticket)
+    }
+
     return (
         <main>
             <section className="ticket">
                 <TicketHeader title="Вы выбрали билеты:"/>
                 <TicketBody
                     price={<Price/>}
-                    paymentButton={<PaymentButton/>}
+                    paymentButton={<PaymentButton onClick={onClick}/>}
                     footerText={footerText}
                 />
             </section>
