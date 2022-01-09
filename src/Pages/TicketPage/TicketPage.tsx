@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import QRCode from "react-qr-code";
 import styled from "styled-components";
 import {ticketsApi} from "Store/ticketsApi";
 import TicketHeader from "Components/TicketHeader/TicketHeader";
 import TicketBody from "Components/TicketBody/TicketBody";
 import Loader from "Components/Loader/Loader";
+import {useNavigate} from "react-router-dom";
 
 const QRBox = styled.div`
   display: flex;
@@ -12,24 +13,36 @@ const QRBox = styled.div`
   align-items: center;
 `
 
-const QR = (ticket: any) => (
-    <QRBox>
-        <QRCode  value={ticket}/>
-    </QRBox>
-)
+const QR = (ticket: any) => {
+    const value = JSON.stringify(ticket)
+
+    return (
+        <QRBox>
+            <QRCode value={value}/>
+        </QRBox>
+    )
+}
 
 function TicketPage() {
-    const [createTicket, {data, isLoading, isError, isSuccess}] = ticketsApi.useCreateTicketMutation({
+    const navigate = useNavigate()
+    const [, {data = [], isLoading, isSuccess}] = ticketsApi.useCreateTicketMutation({
         fixedCacheKey: 'create-ticket',
     })
+
+    useEffect(() => {
+        return () => {
+            navigate('/home')
+        }
+    }, [navigate])
+
     return (
         <main>
             <section className="ticket">
                 <TicketHeader title="Электронный билет"/>
                 {isLoading && <Loader/>}
-                {isSuccess && <TicketBody
+                {isSuccess && data.ticket && <TicketBody
                     footerText={'Покажите QR-код нашему контроллеру для подтверждения бронирования.'}
-                    QR={<QR ticket="https://vk.com/mishgansta"/>}
+                    QR={<QR ticket={data?.ticket}/>}
                 />}
             </section>
         </main>

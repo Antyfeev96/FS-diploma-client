@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useAppDispatch, useAppSelector} from "Hooks/redux";
-import { addSelectedPlace, deleteSelectedPlace, resetState } from 'Store/HallSlice'
+import { addSelectedPlace, deleteSelectedPlace } from 'Store/HallSlice'
 import { handleHallPlaceClassName } from 'functions'
 
 function BuyingScheme() {
     const dispatch = useAppDispatch()
     const { hall, places } = useAppSelector(state => state.hallState)
     const { rows, prices } = hall
-    console.log({prices})
 
     const onSelect = (e: any, { row, place, status }: { row: number, place: number, status: string }) => {
         if (e.target.classList.contains('buying-scheme__chair_taken')) return;
@@ -16,7 +15,6 @@ function BuyingScheme() {
         } else {
             dispatch(addSelectedPlace({ row, place, status }))
         }
-        console.log(places)
         e.target.classList.toggle('buying-scheme__chair_selected')
     }
 

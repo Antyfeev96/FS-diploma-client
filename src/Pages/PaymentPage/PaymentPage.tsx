@@ -12,10 +12,13 @@ const footerText = `
 
 const Price = () => {
     const {places, hall} = useAppSelector(state => state.hallState)
+
     return (
         <p className="ticket__info">Стоимость:
             <span className="ticket__details ticket__cost">
-                {places.reduce((prev, cur) =>
+                &nbsp;
+                {places.length === 1 && hall.prices[places[0].status]}
+                {places.length > 1 && places.reduce((prev, cur) =>
                     hall.prices[prev.status] + hall.prices[cur.status]
                 )}
             </span> рублей
@@ -33,10 +36,16 @@ const PaymentButton = ({ onClick }: { onClick: any }) => {
 
 function PaymentPage() {
     const navigate = useNavigate()
-    const [createTicket, { data, isLoading, isError, isSuccess }] = ticketsApi.useCreateTicketMutation({
+    const [createTicket] = ticketsApi.useCreateTicketMutation({
         fixedCacheKey: 'create-ticket',
     })
     const {places, hall, session, filmId} = useAppSelector(state => state.hallState)
+
+    useEffect(() => {
+        if (!hall || !places || !filmId ) {
+            return navigate('/home')
+        }
+    }, [hall, places, filmId, navigate])
 
     const onClick = async () => {
         navigate('/ticket')

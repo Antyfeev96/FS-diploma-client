@@ -12,14 +12,14 @@ function BuyingInfo() {
         if (filmId === '') {
             navigate('/home')
         }
-    }, [hall])
+    }, [filmId, navigate])
 
     return (
         <div className="buying__info">
             <div className="buying__info-description">
                 <h2 className="buying__info-title">
                     {isFilmLoading && 'Загружаем фильм...'}
-                    {isFilmSuccess && dataFilm.film.name}
+                    {isFilmSuccess && dataFilm?.film?.name}
                 </h2>
                 <p className="buying__info-start">Начало сеанса: {session}</p>
                 <p className="buying__info-hall">{hall.name}</p>
