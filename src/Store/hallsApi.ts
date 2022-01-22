@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const hallsApi = createApi({
     reducerPath: 'hallsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:7070/'
+        baseUrl: 'https://mysterious-lowlands-92634.herokuapp.com/'
     }),
     endpoints: (build) => ({
         getHalls: build.query({
